@@ -1,7 +1,6 @@
 ######################################################
 ### Créer une task
 ### Expected : 201 + tâche créée
-### Currently getting 204 + tâche créée
 POST http://localhost:8080/tasks
 Content-Type: application/json
 
@@ -30,7 +29,6 @@ GET http://localhost:8080/tasks/1234567890987654
 ######################################################
 ### Modifier une article (exemple avec id=1)
 ### Expected : 200 ou 404
-### Currently getting 204  + Updated Task
 
 ### Invalid Request
 PUT http://localhost:8080/tasks/2

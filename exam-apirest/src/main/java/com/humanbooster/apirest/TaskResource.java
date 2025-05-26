@@ -1,5 +1,6 @@
 package com.humanbooster.apirest;
 
+import java.net.URI;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -17,6 +18,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriBuilder;
 
 @Path("/tasks")
 @Produces(MediaType.APPLICATION_JSON)
@@ -38,15 +41,19 @@ public class TaskResource {
     }
 
     @POST
-    public void create(Task task){
+    public Response create(Task task){
         taskDao.creer(task);
+        URI uri = UriBuilder.fromPath("/tasks/" + task.getId()).build();
+        return Response.created(uri).build();
     }
 
     @PUT
     @Path("/{id}")
-    public void update(@PathParam("id") int id, Task task){
+    public Response update(@PathParam("id") int id, Task task){
         task.setId(id);
         taskDao.mettreAJour(task);
+        URI uri = UriBuilder.fromPath("/tasks/" + task.getId()).build();
+        return Response.ok(uri).build();
     }
 
     @DELETE
