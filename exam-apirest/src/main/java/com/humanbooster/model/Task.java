@@ -30,11 +30,12 @@ public class Task {
 
     public Task(){}
     
-    public Task(String title, String description, boolean done, LocalDate createdAt){
+    public Task(String title, String description){
         this.title = title;
         this.description = description;
         this.done = false;
-        this.createdAt = createdAt;
+        this.createdAt = LocalDate.now();
+        this.updatedAt = null;
     }
 
     // GETTER

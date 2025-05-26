@@ -12,25 +12,37 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.humanbooster.apirest.ApiApplication;
+import com.humanbooster.dao.TaskDao;
+import com.humanbooster.model.Task;
 
 public class App {
     public static void main(String[] args) {
+        // STARTS & CONNECTS TO DB
+        SessionFactory sessionFactory = runDB();
+        
+        TaskDao taskDao = new TaskDao(sessionFactory);
+        Task task0 = new Task("First Task", "Testing Task");
+        taskDao.creer(task0);        
+        // RUN SERVLET
         try {
-            runDB();
             runServlet();
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+
+        // CLEAN UP DB
+        for(Task t : taskDao.tout()) taskDao.supprimer(t.getId());
+
     }
 
-    private static void runDB(){
+    private static SessionFactory runDB(){
         System.out.println("Démarrage de l'application");
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
             .configure()
             .build();
         Metadata metadata = new MetadataSources(registry).buildMetadata();
-        SessionFactory sessionFactory = metadata.buildSessionFactory();
         System.out.println("Connexion réussie !");
+        return metadata.buildSessionFactory();
     }
 
     private static void runServlet() throws Exception {
