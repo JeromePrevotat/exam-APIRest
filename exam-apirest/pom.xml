@@ -70,6 +70,14 @@
             <artifactId>jetty-servlet</artifactId>
             <version>11.0.20</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-jetty-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+        </dependency>
         <!-- JAX-RS (Jersey) -->
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
