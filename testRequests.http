@@ -1,0 +1,62 @@
+######################################################
+### Créer une task
+### Expected : 201 + tâche créée
+### Currently getting 204 + tâche créée
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+"title": "New Task",
+"description": "Created via HTTP Request"
+}
+######################################################
+
+######################################################
+### Lister toutes les tasks
+### Expected : 200 + liste JSON
+GET http://localhost:8080/tasks
+######################################################
+
+######################################################
+### Récupérer une article par ID (exemple avec id=1)
+### Expected : 200 ou 404
+
+### Valid Request
+GET http://localhost:8080/tasks/1
+### Invalid Request
+GET http://localhost:8080/tasks/1234567890987654
+######################################################
+
+######################################################
+### Modifier une article (exemple avec id=1)
+### Expected : 200 ou 404
+### Currently getting 204  + Updated Task
+
+### Invalid Request
+PUT http://localhost:8080/tasks/2
+Content-Type: application/json
+
+{
+"title": "Updated Title",
+"description": "Updated via HTTP Request"
+}
+
+### Invalid Request
+PUT http://localhost:8080/tasks/1234567890987654
+Content-Type: application/json
+
+{
+"title": "Updated Title",
+"description": "Updated via HTTP Request"
+}
+######################################################
+
+######################################################
+### Supprimer une article (exemple avec id=1)
+### Expected : 200 ou 404
+
+### Valid Request
+DELETE http://localhost:8080/tasks/1
+### Invalid Request
+DELETE http://localhost:8080/tasks/1234567890987654
+######################################################
