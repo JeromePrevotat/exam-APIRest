@@ -1,0 +1,7 @@
+com\humanbooster\apirest\ApiApplication.class
+com\humanbooster\dao\GenericDaoImp.class
+com\humanbooster\App.class
+com\humanbooster\dao\TaskDao.class
+com\humanbooster\dao\GenericDao.class
+com\humanbooster\apirest\TaskResource.class
+com\humanbooster\model\Task.class
